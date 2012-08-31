@@ -1,0 +1,9 @@
+.row
+  .columns.six
+    %h2 Active users for this season
+    - @all_seasons_users.each do |u|
+      %h3.subheader= u.scramble_username
+  .columns.six
+    %h2 Groups in this season
+    - @all_seasons_groups.each do |g|
+      %h3.subheader= link_to "Group #{g.num}", season_group_path(params[:id], number: g.num)

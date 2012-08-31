@@ -1,0 +1,15 @@
+%h2 Scores
+- if current_user.in_group?(@current_group.id)
+  %h3.subheader= "#{current_user.scramble_username}"
+  %table
+    %tr
+      %th vs.
+      %th Rd. 1
+      %th Rd. 2
+      %th
+    - @all_opponents.each do |u|
+      %tr
+        %td= u.scramble_username
+        %td= text_field_tag :round_1
+        %td= text_field_tag :round_2
+        %td= link_to "Submit", "#", class: "button"

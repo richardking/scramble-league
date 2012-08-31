@@ -1,0 +1,21 @@
+.container#headerArea.show-on-desktops
+  .row
+    .four.columns
+      .logo= link_to "scrmbl.me", root_path
+    .four.columns
+    .four.columns
+      - if user_signed_in?
+        .right
+          %center
+            .div
+              Logged in as
+              %strong= current_user.email
+            .div.top_5
+              = link_to 'Edit Profile', edit_user_registration_path
+              |
+              = link_to 'Log out', destroy_user_session_path, method: :delete
+      / - else
+      /   .right
+      /     = link_to 'Sign up', new_user_registration_path
+      /     |
+      /     = link_to 'Login', new_user_session_path

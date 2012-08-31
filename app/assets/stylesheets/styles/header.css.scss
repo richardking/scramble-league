@@ -1,0 +1,14 @@
+#headerArea {
+  border-bottom: 1px solid #eee;
+  z-index: 10000;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  height: 50px;
+  .logo {
+    margin: 0;
+    font-size: 34px;
+  }
+}
