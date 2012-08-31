@@ -3,7 +3,9 @@
 - @all_users_seasons.each do |s|
   = link_to "Season #{s.num}", season_path(s)
 %h3 All seasons
-- Season.all.each do |s|
-  = "Season #{s.num}"
-  - unless current_user.seasons.include?(s)
-    = link_to "Join", join_season_path(s)
+%ul.unstyled
+  %li
+    - Season.all.each do |s|
+      = "Season #{s.num}"
+      - unless current_user.seasons.include?(s)
+        = link_to "Join", join_season_path(s)
