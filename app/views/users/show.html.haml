@@ -6,26 +6,27 @@
     = link_to "Season #{@current_season.num}", season_path(@current_season)
   %h4.subheader= "Running from #{@current_season.start_date.strftime('%D')} to #{@current_season.end_date.strftime('%D')}"
 
-%table
-  %tr
-    %th Future Seasons
-    %th
-    %th
-  - @future_seasons.each do |fs|
+- unless Season.count.zero?
+  %table
     %tr
-      %td= "Season #{fs.num}"
-      %td= "#{fs.start_date.strftime('%D')} - #{fs.end_date.strftime('%D')}"
-      %td
-        - if current_user.seasons.include?(fs)
-          = link_to "Un-join", unjoin_season_path(fs)
-        - else
-          = link_to "Join", join_season_path(fs)
+      %th Future Seasons
+      %th
+      %th
+    - @future_seasons.each do |fs|
+      %tr
+        %td= "Season #{fs.num}"
+        %td= "#{fs.start_date.strftime('%D')} - #{fs.end_date.strftime('%D')}"
+        %td
+          - if current_user.seasons.include?(fs)
+            = link_to "Un-join", unjoin_season_path(fs)
+          - else
+            = link_to "Join", join_season_path(fs)
 
-%table
-  %tr
-    %th Past Seasons
-    %th
-  - @past_seasons.each do |ps|
+  %table
     %tr
-      %td= "Season #{ps.num}"
-      %td= "#{ps.start_date.strftime('%D')} - #{ps.end_date.strftime('%D')}"
+      %th Past Seasons
+      %th
+    - @past_seasons.each do |ps|
+      %tr
+        %td= "Season #{ps.num}"
+        %td= "#{ps.start_date.strftime('%D')} - #{ps.end_date.strftime('%D')}"
