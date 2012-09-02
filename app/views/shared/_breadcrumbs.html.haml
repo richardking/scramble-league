@@ -1,0 +1,7 @@
+%ul.breadcrumbs
+  %li
+    %span= link_to "Home", user_path(current_user)
+  %li
+    %span= link_to "Current Season", season_path(Season.active)
+  %li
+    %span= link_to "Current Group", season_group_path(Season.active, number: current_user.active_group.num)

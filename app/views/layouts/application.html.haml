@@ -22,6 +22,8 @@
           = content_tag :div, :id => "flash_name", :class => "alert-box" do
             = flash[:notice]
             %a.close{href:""} ×
+        
+        = render partial: "shared/breadcrumbs"
         = yield
         .top_50
           = debug(params) if Rails.env.development?

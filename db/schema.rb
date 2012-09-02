@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120831193148) do
+ActiveRecord::Schema.define(:version => 20120902004615) do
 
   create_table "groups", :force => true do |t|
     t.integer  "num"
@@ -20,12 +20,30 @@ ActiveRecord::Schema.define(:version => 20120831193148) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "matchups", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "opponent_id"
+    t.integer  "group_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "rounds", :force => true do |t|
+    t.integer  "matchup_id"
+    t.integer  "user_score"
+    t.integer  "opponent_round_id"
+    t.integer  "num"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "seasons", :force => true do |t|
     t.integer  "num"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "active",     :default => false
   end
 
   create_table "users", :force => true do |t|

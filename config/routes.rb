@@ -9,9 +9,13 @@ ScrambleLeague::Application.routes.draw do
   delete '/:id' => 'users#destroy', :as => :user
 
   match '/seasons/:id/join' => 'seasons#join', :as => :join_season
+  match '/seasons/:id/unjoin' => 'seasons#unjoin', :as => :unjoin_season
+
+  resources :matchups
 
   resources :seasons do
     get 'group' => 'groups#show'
+    post 'group/:id/submit_score' => 'group#submit_score'
   end
 
   # The priority is based upon order of creation:

@@ -34,7 +34,6 @@
 // Body Classes
 body {
   //background: url('/assets/body_bg.png');
-  background: #eee;
   overflow-x: hidden;
   padding-top: 60px !important;
 }
@@ -72,4 +71,17 @@ body {
 }
 .reveal-modal {
   z-index: 99999;
+}
+
+ul.breadcrumbs li a, ul.breadcrumbs li span {
+  padding-left: 5px;
+}
+
+ul.breadcrumbs li:first-child {
+  padding-left: 0px;
+}
+
+ul.breadcrumbs li:first-child::before {
+  content: "/" !important;
+  opacity: 0;
 }

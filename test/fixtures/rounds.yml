@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  matchup_id: 1
+  user_score: 1
+  opponent_score: 1
+  num: 1
+
+two:
+  matchup_id: 1
+  user_score: 1
+  opponent_score: 1
+  num: 1

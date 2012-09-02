@@ -1,6 +1,9 @@
-%h2 Scores
+%h3
+  = "Season #{params[:season_id]} - Group #{params[:number]}"
+  - if Season.active.id == params[:season_id].to_i
+    %small Current Season
 - if current_user.in_group?(@current_group.id)
-  %h3.subheader= "#{current_user.scramble_username}"
+  %h4.subheader= "#{current_user.scramble_username}"
   %table
     %tr
       %th vs.
@@ -10,6 +13,24 @@
     - @all_opponents.each do |u|
       %tr
         %td= u.scramble_username
-        %td= text_field_tag :round_1
-        %td= text_field_tag :round_2
-        %td= link_to "Submit", "#", class: "button"
+        - @matchup = Matchup.find_by_user_id_and_opponent_id_and_group_id(current_user.id, u.id, @current_group.id)
+        = form_for :matchup, :url => "/matchups/#{@matchup.id}", :method => :put do |f|
+          - @matchup.rounds.each do |round|
+            = f.fields_for 'round[]', round do |rf|
+              %td
+                = rf.text_field :user_score
+          %td= f.submit "submit", class: "button"
+
+%h3 Standings
+%table
+  %tr
+    %td Username
+    %td Total points
+    %td Possible points
+    %td Rounds left
+  - UsersGroup.find_all_by_group_id(@current_group).sort_by(&:total_points).reverse.each do |u|
+    %tr
+      %td= u.user.scramble_username
+      %td= u.total_points
+      %td= u.user.possible_points(@current_group.id)
+      %td= u.user.rounds_left(@current_group.id)
