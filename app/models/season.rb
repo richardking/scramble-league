@@ -37,7 +37,7 @@ class Season < ActiveRecord::Base
         m.create_rounds(2)
       end
     end
-    activate
+    self.activate
   end
 
   protected
