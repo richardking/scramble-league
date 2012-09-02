@@ -45,7 +45,11 @@ class User < ActiveRecord::Base
   end
 
   def active?
-    Season.find_by_active(true).users.include?(self)
+    if Season.find_by_active(true) > 0
+      Season.find_by_active(true).users.include?(self)
+    else
+      return false
+    end
   end
 
   def create_matchup(opponent_id, group_id)
