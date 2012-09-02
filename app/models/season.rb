@@ -5,6 +5,8 @@ class Season < ActiveRecord::Base
 
   attr_accessible :start_date, :end_date, :active
 
+  validates_presence_of :start_date, :end_date, :num
+
   before_save :check_active, only: [:activate]
 
   def join
