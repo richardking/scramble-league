@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   end
 
   def active?
-    if Season.find_by_active(true) > 0
+    if Season.find_by_active(true).present?
       Season.find_by_active(true).users.include?(self)
     else
       return false
