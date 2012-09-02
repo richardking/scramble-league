@@ -3,7 +3,7 @@ class Season < ActiveRecord::Base
   has_many :users, :through => :users_seasons
   has_many :groups, :dependent => :destroy
 
-  attr_accessible :start_date, :end_date, :active
+  attr_accessible :start_date, :end_date, :active, :num
 
   validates_presence_of :start_date, :end_date, :num
 
@@ -37,6 +37,7 @@ class Season < ActiveRecord::Base
         m.create_rounds(2)
       end
     end
+    activate
   end
 
   protected
